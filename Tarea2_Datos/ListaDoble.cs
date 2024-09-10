@@ -47,6 +47,27 @@ namespace Tarea2_Datos
             contador++;
         }
 
+        public void AddBeg(int valor)
+        {
+            Nodo nuevoNodo = new Nodo(valor);
+
+            // Si la lista está vacía, el nuevo nodo será tanto la cabeza como la cola
+            if (cabeza == null)
+            {
+                cabeza = nuevoNodo;
+                cola = nuevoNodo;
+            }
+            else
+            {
+                // Enlazar el nuevo nodo con la cabeza actual
+                nuevoNodo.Siguiente = cabeza;
+                cabeza.Anterior = nuevoNodo;
+
+                // Actualizar la cabeza para que apunte al nuevo nodo
+                cabeza = nuevoNodo;
+            }
+        }
+
         // Metodo actualia el medio despues de anadir elemento
         private void ActualizarMedioAdd()
         {
@@ -241,5 +262,78 @@ namespace Tarea2_Datos
                 actual.Siguiente = nuevoNodo;
             }
         }
+
+        // Método MergeSorted para combinar dos listas en una
+        public static ListaDoble MergeSorted(ListaDoble listA, ListaDoble listB, string direction)
+        {
+            ListaDoble mergedList = new ListaDoble();
+
+            Nodo actualA = listA.cabeza;
+            Nodo actualB = listB.cabeza;
+
+            // Mezclar en orden ascendente
+            if (direction == "asc")
+            {
+                while (actualA != null && actualB != null)
+                {
+                    if (actualA.Valor <= actualB.Valor)
+                    {
+                        mergedList.Add(actualA.Valor);
+                        actualA = actualA.Siguiente;
+                    }
+                    else
+                    {
+                        mergedList.Add(actualB.Valor);
+                        actualB = actualB.Siguiente;
+                    }
+                }
+
+                // Añadir los elementos restantes de listA o listB
+                while (actualA != null)
+                {
+                    mergedList.Add(actualA.Valor);
+                    actualA = actualA.Siguiente;
+                }
+
+                while (actualB != null)
+                {
+                    mergedList.Add(actualB.Valor);
+                    actualB = actualB.Siguiente;
+                }
+            }
+            // Mezclar en orden descendente
+            else if (direction == "desc")
+            {
+                while (actualA != null && actualB != null)
+                {
+                    if (actualA.Valor >= actualB.Valor)
+                    {
+                        mergedList.AddBeg(actualA.Valor);
+                        actualA = actualA.Siguiente;
+                    }
+                    else
+                    {
+                        mergedList.AddBeg(actualB.Valor);
+                        actualB = actualB.Siguiente;
+                    }
+                }
+
+                // Añadir los elementos restantes de listA o listB
+                while (actualA != null)
+                {
+                    mergedList.AddBeg(actualA.Valor);
+                    actualA = actualA.Siguiente;
+                }
+
+                while (actualB != null)
+                {
+                    mergedList.AddBeg(actualB.Valor);
+                    actualB = actualB.Siguiente;
+                }
+            }
+
+            return mergedList;
+        }
+
     }
 }

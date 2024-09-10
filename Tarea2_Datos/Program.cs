@@ -8,20 +8,27 @@ namespace Tarea2_Datos
     {
         public static void Main(string[] args)
         {
-            ListaDoble lista1 = new ListaDoble();
-            lista1.Add(1);
-            lista1.Add(2);
-            lista1.Add(4);
-            lista1.Add(5);
+            ListaDoble listA = new ListaDoble();
+            listA.Add(1);
+            listA.Add(2);
+            listA.Add(4);
+            listA.Add(5);
 
-            lista1.Mostrar();  // Debería imprimir: 1 2 3
-            lista1.GetMiddle();
+            ListaDoble listB = new ListaDoble();
+            listB.Add(8);
+            listB.Add(9);
+            listB.Add(11);
+            listB.Add(12);
 
-            //lista1.Invert();
-            lista1.InsertInOrder(3);
 
-            lista1.Mostrar();  // Debería imprimir: 3 2 1
+            listA.Mostrar();  // Debería imprimir: 1 2 3
+            
+            listB.Mostrar();  // Debería imprimir: 3 2 1
 
+
+            ListaDoble listaunida = ListaDoble.MergeSorted(listA, listB, "asc");
+
+            listaunida.Mostrar();
         }
     }
 
