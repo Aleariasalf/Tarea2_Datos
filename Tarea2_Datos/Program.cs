@@ -11,13 +11,14 @@ namespace Tarea2_Datos
             ListaDoble lista1 = new ListaDoble();
             lista1.Add(1);
             lista1.Add(2);
-            lista1.Add(3);
             lista1.Add(4);
+            lista1.Add(5);
 
             lista1.Mostrar();  // Debería imprimir: 1 2 3
             lista1.GetMiddle();
 
-            lista1.Invert();
+            //lista1.Invert();
+            lista1.InsertInOrder(3);
 
             lista1.Mostrar();  // Debería imprimir: 3 2 1
 

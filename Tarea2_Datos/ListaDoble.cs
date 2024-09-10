@@ -197,5 +197,49 @@ namespace Tarea2_Datos
         {
             Console.Write("Elemento central " + medio.Valor + "\n");
         }
+
+        // Metodo que inserta un elemento ordenado en forma ascendente
+        public void InsertInOrder(int valor)
+        {
+            Nodo nuevoNodo = new Nodo(valor);
+            contador++;
+
+            // Caso 1: Si la lista está vacía o el valor es menor que el de la cabeza, insertar al inicio
+            if (cabeza == null || valor < cabeza.Valor)
+            {
+                nuevoNodo.Siguiente = cabeza;
+                if (cabeza != null)
+                    cabeza.Anterior = nuevoNodo;
+                cabeza = nuevoNodo;
+                if (cola == null) // Si la lista estaba vacía, ahora el nuevo nodo es también la cola
+                    cola = nuevoNodo;
+                return;
+            }
+
+            // Caso 2: Buscar el lugar adecuado para insertar el nuevo nodo en el medio
+            Nodo actual = cabeza;
+            while (actual.Siguiente != null && actual.Siguiente.Valor < valor)
+            {
+                actual = actual.Siguiente;
+            }
+
+            // Insertar el nuevo nodo en la posición adecuada
+
+            // Si el nodo debe insertarse al final de la lista
+            if (actual.Siguiente == null)
+            {
+                actual.Siguiente = nuevoNodo;
+                nuevoNodo.Anterior = actual;
+                cola = nuevoNodo;  // Actualizar la cola si es el último
+            }
+            else
+            {
+                // Si el nodo debe insertarse entre dos nodos
+                nuevoNodo.Siguiente = actual.Siguiente;
+                nuevoNodo.Anterior = actual;
+                actual.Siguiente.Anterior = nuevoNodo; // Actualizar el nodo siguiente para apuntar al nuevo nodo
+                actual.Siguiente = nuevoNodo;
+            }
+        }
     }
 }
