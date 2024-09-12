@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Tarea2_Datos
 {
@@ -323,6 +324,7 @@ namespace Tarea2_Datos
                 {
                     mergedList.AddBeg(actualA.Valor);
                     actualA = actualA.Siguiente;
+                    
                 }
 
                 while (actualB != null)
